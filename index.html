@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/index.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <title>Weather Forecast</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-section" id="web-display">
+        <div class="search-city-section">
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <input
+                  type="text"
+                  class="search-city-label"
+                  placeholder="Search city"
+                />
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="current-city-display">
+          <div class="row">
+            <div class="col-sm">
+              <h1 class="current-city-name">Coimbra</h1>
+              <div class="icon">Sun</div>
+              <h3 class="current-temperature">25ºC | Fº</h3>
+              <h5 class="current-week-day">Friday</h5>
+            </div>
+            <div class="col-sm">
+              <h2 class="current-weather-stats">Current weather Stats</h2>
+              <ul class="weather-stats">
+                <li id="wind">Wind: 3km/h</li>
+                <li id="max-tem">Max temperature: 30ºC | ºF</li>
+                <li id="min-tem">Min temperature: 20ºC | ºF</li>
+                <li id="humidity">Humidity: 3%</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="weather-grid row">
+          <div class="col-2 card text-dark bg-light mb-3">
+            <h4 class="second-city" id="secondary-city-name">Coimbra</h4>
+            <i class="fa-regular fa-sun sunny"></i>
+            <h5 class="secondary-temperature">15ºCelsius</h5>
+            <h5 class="week-day">Friday</h5>
+            <!--  <p class="weather-status">Sunny</p>-->
+          </div>
+          <div class="col-2 card text-dark bg-light mb-3">
+            <h4 class="second-city">Coimbra</h4>
+            <i class="fa-solid fa-cloud cloud"></i>
+            <h5 class="secondary-temperature">12ºCelsius</h5>
+            <h5 class="week-day">Saturday</h5>
+            <!--    <p class="weather-status">Cloudy</p>-->
+          </div>
+          <div class="col-2 card text-dark bg-light mb-3">
+            <h4 class="second-city">Coimbra</h4>
+            <i class="fa-solid fa-cloud cloud"></i>
+            <h5 class="secondary-temperature">13ºCelsius</h5>
+            <h5 class="week-day">Sunday</h5>
+            <!--   <p class="weather-status">Cloudy</p>-->
+          </div>
+          <div class="col-2 card text-dark bg-light mb-3">
+            <h4 class="second-city">Coimbra</h4>
+            <i class="fa-regular fa-sun sunny"></i>
+            <h5 class="secondary-temperature">15ºCelsius</h5>
+            <h5 class="week-day">Monday</h5>
+            <!--  <p class="weather-status">Sunny</p>-->
+          </div>
+        </div>
+      </div>
+      <small
+        >This weather app was coded by Deborah, check my
+        <a href="#">GitHub</a></small
+      >
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
