@@ -1,21 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+
+
 
 .container {
+  background-image: url(../media/background2.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   border: 1px solid black;
   margin-top: 25px;
 }
 
 .main-section {
+  background-color: rgba(255, 255, 255, 0.35);
   padding: 50px;
   width: 60%;
 }
 
 .form-row {
+
   display: flex;
   flex-direction: row;
 }
@@ -25,29 +32,80 @@
   border: 0px;
   border-radius: 200px;
   width: 95%;
+  font-family: raleway, sans;
 }
 
 .btn-dark {
-  background-color: aquamarine;
+  background-color: #F0B652;
   padding: 5px 15px 5px 15px;
   border: 0px;
   border-radius: 200px;
+  font-family: raleway, sans;
+  font-weight: bold;
+}
+
+.btn-dark:hover {
+  color: #fff;
 }
 
 .current-city-display {
+
   margin-top: 25px;
   margin-bottom: 25px;
   padding: 15px;
   border: 1px solid;
 }
 
+.current-city-name {
+  font-family: Ysabeau;
+  font-weight: 400;
+  font-size: 50px;
+  letter-spacing: 3px;
+}
+
+.current-description {
+  font-family: raleway, sans;
+  font-size: 20px;
+}
+
+.current-temperature {
+  font-family: raleway, sans;
+  font-size: 20px;
+}
+
+.current-week-day {
+  font-family: Ysabeau;
+  font-weight: 400;
+  font-size: 25px;
+}
+
 .col-sm {
   line-height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+.current-weather-stats {
+  font-family: Ysabeau;
+  letter-spacing: 3px;
+  margin-left: 45px;
+}
+
+
+ul {
+  text-align: justify;
 }
 
 li {
   list-style: none;
   line-height: 35px;
+  font-family: raleway, sans;
+  letter-spacing: 2px;
+
+
 }
 
 .weather-grid {
@@ -57,4 +115,23 @@ li {
   text-align: center;
   height: 10rem;
   line-height: 10rem;
+}
+
+.footer {
+  font-family: raleway, sans;
+  font-size: 15px;
+  letter-spacing: 1px;
+
+}
+
+.linkGit {
+  color: #F0B652;
+  text-decoration: none
+}
+
+.linkGit:hover {
+  color: #AEC0B2;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 16px;
 }
