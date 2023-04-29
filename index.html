@@ -26,7 +26,8 @@
                   class="search-city-label"
                   placeholder="Search city"
                   id="search-city-input"
-                  autocomplete="off";
+                  autocomplete="off"
+                  ;
                 />
               </div>
               <div class="col">
@@ -35,32 +36,37 @@
             </div>
           </form>
         </div>
+
         <div class="current-city-display">
           <div class="row">
             <div class="col-sm">
               <h1 class="current-city-name" id="current-city">Coimbra</h1>
-              <img src="" alt="" id="icon">
-              <div class="current-description" id="current-weather-description">Clear </div>
-              <h3 class="current-temperature" id="current-temp">25ºC | Fº</h3>
-            
+              <img src="" alt="" id="icon" />
+              <div class="current-description" id="current-weather-description">
+                Clear
+              </div>
+              <h3 class="current-temperature">
+                <span id="current-temp">25</span>
+
+                <span id="celsius" class="temp-selected">ºC </span
+                ><span class="temp-type-link" id="fahrenheit">Fº</span>
+              </h3>
               <h5 class="current-week-day" id="current-day-week">Friday</h5>
             </div>
             <div class="col-sm">
               <h2 class="current-weather-stats">Current weather Stats</h2>
               <ul class="weather-stats">
-                <li ><strong>Wind:</strong><span id="wind">3</span> </li>
-                <li ><strong>Max:</strong><span id="max-temp">30</span> </li>
-                <li ><strong>Min:</strong><span id="min-temp">20</span> </li>
-                <li><strong>Humidity:</strong><span  id="humidity"> 3</span> </li>
+                <li><strong>Wind:</strong><span id="wind">3</span></li>
+                <li><strong>Max:</strong><span id="max-temp">30</span></li>
+                <li><strong>Min:</strong><span id="min-temp">20</span></li>
+                <li><strong>Humidity:</strong><span id="humidity"> 3</span></li>
                 <strong> <li id="current-time">17:45</li></strong>
               </ul>
-              <div >
-                
-                <p </p>
-              </div>
+              <div></div>
             </div>
           </div>
         </div>
+      </div>
       <small class="footer"
         >This weather app was coded by Deborah, check my
         <a href="#" class="linkGit">GitHub</a></small

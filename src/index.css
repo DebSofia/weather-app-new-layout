@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@1,200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@1,200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap");
 
 .container {
   background-image: url(../media/background2.jpg);
@@ -16,13 +14,12 @@
 }
 
 .main-section {
-  background-color: rgba(255, 255, 255, 0.35);
   padding: 50px;
   width: 60%;
 }
 
 .form-row {
-
+  margin-left: 55px;
   display: flex;
   flex-direction: row;
 }
@@ -31,12 +28,12 @@
   padding: 5px 30px 5px 30px;
   border: 0px;
   border-radius: 200px;
-  width: 95%;
+  width: 97%;
   font-family: raleway, sans;
 }
 
 .btn-dark {
-  background-color: #F0B652;
+  background-color: #f0b652;
   padding: 5px 15px 5px 15px;
   border: 0px;
   border-radius: 200px;
@@ -49,11 +46,9 @@
 }
 
 .current-city-display {
-
   margin-top: 25px;
   margin-bottom: 25px;
   padding: 15px;
-  border: 1px solid;
 }
 
 .current-city-name {
@@ -79,24 +74,30 @@
   font-size: 25px;
 }
 
+.temp-selected {
+  font-weight: bold;
+}
+
+.temp-type-link {
+  color: gray;
+}
+
+.temp-type-link:hover {
+  cursor: pointer;
+}
+
 .col-sm {
   line-height: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-
 }
 
 .current-weather-stats {
   font-family: Ysabeau;
   letter-spacing: 3px;
-  margin-left: 45px;
-}
-
-
-ul {
-  text-align: justify;
+  margin-top: 5px;
+  margin-left: 65px;
 }
 
 li {
@@ -104,8 +105,7 @@ li {
   line-height: 35px;
   font-family: raleway, sans;
   letter-spacing: 2px;
-
-
+  margin-right: 85px;
 }
 
 .weather-grid {
@@ -121,16 +121,15 @@ li {
   font-family: raleway, sans;
   font-size: 15px;
   letter-spacing: 1px;
-
 }
 
 .linkGit {
-  color: #F0B652;
-  text-decoration: none
+  color: #f0b652;
+  text-decoration: none;
 }
 
 .linkGit:hover {
-  color: #AEC0B2;
+  color: #aec0b2;
   text-decoration: underline;
   font-weight: bold;
   font-size: 16px;
