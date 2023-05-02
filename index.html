@@ -14,6 +14,7 @@
     />
     <title>Weather Forecast</title>
   </head>
+
   <body>
     <div class="container">
       <div class="main-section" id="web-display">
@@ -32,6 +33,9 @@
               </div>
               <div class="col">
                 <button type="submit" class="btn-dark">Search</button>
+                <button type="button" class="btn-dark" id="current-location">
+                  Current
+                </button>
               </div>
             </div>
           </form>
@@ -60,9 +64,70 @@
                 <li><strong>Max:</strong><span id="max-temp">30</span></li>
                 <li><strong>Min:</strong><span id="min-temp">20</span></li>
                 <li><strong>Humidity:</strong><span id="humidity"> 3</span></li>
-                <strong> <li id="current-time">17:45</li></strong>
+                <strong>
+                  <li id="current-time">17:45</li>
+                </strong>
               </ul>
-              <div></div>
+            </div>
+          </div>
+        </div>
+        <div class="weather-grid row">
+          <div
+            class="col-2 card text-dark bg-transparent border-light mb-3"
+            style="width: 10rem"
+          >
+            <div class="weather-forecast">
+              <h4 class="second-city">Coimbra</h4>
+              <img src="" alt="" class="forecast-icon" />
+              <div
+                class="current-description-forecast"
+                id="current-weather-description"
+              >
+                Clear
+              </div>
+              <h5 class="secondary-temperature">15ºCelsius</h5>
+              <h5 class="week-day">Friday</h5>
+            </div>
+          </div>
+          <div
+            class="col-2 card text-dark bg-transparent border-light mb-3"
+            style="width: 10rem"
+          >
+            <div class="weather-forecast">
+              <h4 class="second-city">Coimbra</h4>
+              <img src="" alt="" class="forecast-icon" />
+              <div
+                class="current-description-forecast"
+                id="current-weather-description"
+              >
+                Clear
+              </div>
+              <h5 class="secondary-temperature">12ºCelsius</h5>
+              <h5 class="week-day">Saturday</h5>
+            </div>
+          </div>
+          <div
+            class="col-2 card text-dark bg-transparent border-light mb-3"
+            style="width: 10rem"
+          >
+            <div class="weather-forecast">
+              <h4 class="second-city">Coimbra</h4>
+              <img src="" alt="" class="forecast-icon" />
+              <div class="current-description-forecast">Clear</div>
+              <h5 class="secondary-temperature">13ºCelsius</h5>
+              <h5 class="week-day">Sunday</h5>
+            </div>
+          </div>
+          <div
+            class="col-2 card text-dark bg-transparent border-light mb-3"
+            style="width: 10rem"
+          >
+            <div class="weather-forecast">
+              <h4 class="second-city">Coimbra</h4>
+              <img src="" alt="" class="forecast-icon" />
+              <div class="current-description-forecast">Clear</div>
+              <h5 class="secondary-temperature">13ºCelsius</h5>
+              <h5 class="week-day">Sunday</h5>
             </div>
           </div>
         </div>
@@ -72,6 +137,7 @@
         <a href="#" class="linkGit">GitHub</a></small
       >
     </div>
+
     <script src="src/index.js"></script>
   </body>
 </html>

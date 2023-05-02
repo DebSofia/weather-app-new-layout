@@ -2,15 +2,6 @@ let apiKey = "349039acab4517a804dcf4a9066de7b5";
 
 let now = new Date();
 
-let time = now.toLocaleTimeString("eu-PT", {
-  hour: "2-digit",
-
-  minute: "2-digit",
-});
-
-console.log(time);
-console.log(now);
-
 let weekDays = [
   "Sunday",
   "Monday",
@@ -20,9 +11,6 @@ let weekDays = [
   "Friday",
   "Saturday",
 ];
-
-let currentDay = weekDays[now.getDay()];
-console.log(currentDay);
 
 let months = [
   "Jan",
@@ -39,45 +27,66 @@ let months = [
   "Dec",
 ];
 
-let month = months[now.getMonth()];
-console.log(month);
+const NUMBER_OF_DAYS_FORECAST = 4;
 
-let day = now.getDate();
-console.log(day);
+function displayCurrentDateTime(timeShift) {
+  console.log("displayCurrentTime.timeShift", timeShift);
 
-let year = now.getFullYear();
-console.log(year);
+  let currentDate = new Date();
 
-let weekDay = weekDays[now.getDay()];
-console.log(weekDay);
+  currentDate.setSeconds(currentDate.getSeconds() + timeShift);
 
-function displayCurrentTime() {
-  let p = document.querySelector("#current-time");
-  console.log(p);
+  let time = toUtcTime(currentDate);
 
-  p.innerHTML = time;
-}
-displayCurrentTime();
+  let timeElement = document.querySelector("#current-time");
+  timeElement.innerHTML = time;
 
-function displayCurrentWeekDay() {
+  let currentDay = weekDays[currentDate.getUTCDay()];
+
   let h5 = document.querySelector("#current-day-week");
   h5.innerHTML = currentDay;
 }
-displayCurrentWeekDay();
+
+/**
+ *
+ * @param {Date} date
+ * @returns
+ */
+function toUtcTime(date) {
+  return ` ${formatWithTwoDigits(date.getUTCHours())}:${formatWithTwoDigits(
+    date.getUTCMinutes()
+  )}`;
+}
+
+function formatWithTwoDigits(numb) {
+  if (numb < 10) {
+    return "0" + numb;
+  } else {
+    return numb;
+  }
+}
+
+displayCurrentDateTime(0);
 
 let celsiusTemperature = null;
 let celsiusMaxTemp = null;
 let celsiusMinTemp = null;
+let forescastDataList = null;
+let cityName = null;
+let timeShift = null;
 
 function displayCurrentTemp(response) {
   console.log(response);
   console.log(response.data.list[0].main.temp);
 
+  forescastDataList = response.data.list;
+  cityName = response.data.city.name;
+  timeShift = response.data.city.timezone;
+
   let cityNameElement = document.querySelector("#current-city");
   cityNameElement.innerHTML = response.data.city.name;
 
   let currentData = response.data.list[0];
-  let currentTemp = Math.round(currentData.main.temp);
   let windSpeed = Math.round(currentData.wind.speed);
   let maxTemp = Math.round(currentData.main.temp_max);
   let minTemp = Math.round(currentData.main.temp_min);
@@ -118,11 +127,66 @@ function displayCurrentTemp(response) {
   };
 
   updateTemperaturesElements(temperatureObj);
+  displayForecast(
+    forescastDataList.map((f) => {
+      return {
+        dt_txt: f.dt_txt,
+        icon: f.weather[0].icon,
+        description: f.weather[0].description,
+        temp: f.main.temp,
+        suffix: "ºC",
+      };
+    }),
+    cityName,
+    timeShift
+  );
+  displayCurrentDateTime(timeShift);
 }
 
 function getCurrentCityWeatherAndUpdateDom(cityName) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentTemp);
+}
+
+function displayForecast(forecastList, cityName, timeShift) {
+  const forecastElement = document.querySelectorAll(".second-city");
+  const forecastDescriptionElement = document.querySelectorAll(
+    ".current-description-forecast"
+  );
+  const forecastDegreesElement = document.querySelectorAll(
+    ".secondary-temperature"
+  );
+  const forecastWeekDayElement = document.querySelectorAll(".week-day");
+  const iconElement = document.querySelectorAll(".forecast-icon");
+
+  for (let i = 0; i < NUMBER_OF_DAYS_FORECAST; i++) {
+    const date = new Date();
+
+    date.setSeconds(date.getSeconds() + timeShift);
+    date.setDate(date.getDate() + i + 1);
+
+    const fullDate = `${date.toISOString().split("T")[0]} 12:00:00`;
+    const forecast = forecastList.find((f) => fullDate === f.dt_txt);
+
+    let weatherIcon = forecast.icon;
+
+    iconElement[i].setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${weatherIcon}.png`
+    );
+
+    let secondDescription = forecast.description;
+    console.log(secondDescription);
+    let capitalizedSecondDescription =
+      secondDescription.charAt(0).toUpperCase() + secondDescription.slice(1);
+
+    forecastDescriptionElement[i].innerHTML = capitalizedSecondDescription;
+    forecastDegreesElement[i].innerHTML = `${Math.round(forecast.temp)} ${
+      forecast.suffix
+    }`;
+    forecastWeekDayElement[i].innerHTML = weekDays[date.getDay()];
+    forecastElement[i].innerHTML = cityName;
+  }
 }
 
 getCurrentCityWeatherAndUpdateDom("Coimbra");
@@ -131,6 +195,7 @@ function handleSearch(event) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#search-city-input");
   let searchInputValue = searchInputElement.value;
+
   getCurrentCityWeatherAndUpdateDom(searchInputValue);
 }
 
@@ -166,6 +231,20 @@ function showFharenheitTemp(event) {
 
   updateTemperaturesElements(tempObject);
 
+  displayForecast(
+    forescastDataList.map((f) => {
+      return {
+        dt_txt: f.dt_txt,
+        icon: f.weather[0].icon,
+        description: f.weather[0].description,
+        temp: Math.round((f.main.temp * 9) / 5 + 32),
+        suffix: "ºF",
+      };
+    }),
+    cityName,
+    timeShift
+  );
+
   celsiusLink.classList.add("temp-type-link");
   fahrenheitLink.classList.remove("temp-type-link");
 
@@ -184,6 +263,20 @@ function showCelsiusTemp(event) {
     suffix: "ºC",
   });
 
+  displayForecast(
+    forescastDataList.map((f) => {
+      return {
+        dt_txt: f.dt_txt,
+        icon: f.weather[0].icon,
+        description: f.weather[0].description,
+        temp: f.main.temp,
+        suffix: "ºC",
+      };
+    }),
+    cityName,
+    timeShift
+  );
+
   celsiusLink.classList.remove("temp-type-link");
   fahrenheitLink.classList.add("temp-type-link");
 
@@ -199,3 +292,31 @@ fahrenheitLink.addEventListener("click", showFharenheitTemp);
 
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", showCelsiusTemp);
+
+function onLocationConfirm(position) {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+  const locationUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+  axios
+    .get(locationUrl)
+    .then((response) => {
+      // Extract city name from the response
+      const city = response.data[0].name;
+      console.log(`City: ${city}`);
+      getCurrentCityWeatherAndUpdateDom(city);
+    })
+    .catch((error) => {});
+}
+
+function onLocationCancel(params) {}
+
+function getCurrentPosition(params) {
+  navigator.geolocation.getCurrentPosition(
+    onLocationConfirm,
+    onLocationCancel,
+    {}
+  );
+}
+const currentButton = document.querySelector("#current-location");
+currentButton.addEventListener("click", getCurrentPosition);

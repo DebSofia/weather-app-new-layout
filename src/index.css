@@ -114,7 +114,26 @@ li {
   justify-content: space-evenly;
   text-align: center;
   height: 10rem;
-  line-height: 10rem;
+  margin: 45px;
+}
+
+.second-city {
+  margin-top: 25px;
+  font-family: Ysabeau;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.secondary-temperature {
+  margin-top: 10px;
+  font-family: raleway, sans;
+}
+
+.week-day {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-family: Ysabeau;
+  font-weight: 600;
 }
 
 .footer {
