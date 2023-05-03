@@ -292,21 +292,16 @@ fahrenheitLink.addEventListener("click", showFharenheitTemp);
 
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", showCelsiusTemp);
-
 function onLocationConfirm(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
-  const locationUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
   axios
-    .get(locationUrl)
-    .then((response) => {
-      // Extract city name from the response
-      const city = response.data[0].name;
-      console.log(`City: ${city}`);
-      getCurrentCityWeatherAndUpdateDom(city);
-    })
-    .catch((error) => {});
+    .get(apiUrl)
+    .then(displayCurrentTemp)
+    .catch((e) => console.log(e));
 }
 
 function onLocationCancel(params) {}
